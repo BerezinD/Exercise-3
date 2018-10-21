@@ -7,17 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import com.squareup.picasso.Picasso
+import android.media.MediaPlayer
 
 class CatAdapterForRV(private val catList: ArrayList<Cat>
-                      /*private val mClickListener: ItemClickListener*/): RecyclerView.Adapter<CatAdapterForRV.CatHolder>() {
-
-    /*private val internalClickListener = View.OnClickListener {
-        val kitty: Cat = it.getTag(R.id.key_for_click) as Cat
-        if (kitty != null){
-            val position = catList.indexOf(kitty)
-            mClickListener.onItemClick(kitty, position)
-        }
-    }*/
+                      ): RecyclerView.Adapter<CatAdapterForRV.CatHolder>() {
 
     class CatHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener{
         val imageView: ImageView?
@@ -27,7 +20,8 @@ class CatAdapterForRV(private val catList: ArrayList<Cat>
         }
         override fun onClick(view: View){
             if (itemView != null){
-                Toast.makeText(view.context, "meaow", Toast.LENGTH_LONG).show()
+                val mediaPlayer = MediaPlayer.create(itemView.context, R.raw.cat_sound)
+                mediaPlayer.start()
             }
         }
     }
